@@ -15,16 +15,19 @@
             MDLabel:
                 text: "Password Keeper"
                 halign: "center"
+                font_size: '28sp'
             MDTextField:
                 id: register_username_textfield
                 hint_text: "Username"
             MDTextField:
                 id: register_password_textfield
                 hint_text: "Master-password"
+                password: True
             MDRaisedButton:
                 id: sign_up_button
                 pos_hint: {"center_x": .5, "center_y": .5}
                 text: "Sign Up"
+                on_press: root.controller.register_user()
 
 
 
