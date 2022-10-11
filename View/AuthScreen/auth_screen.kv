@@ -1,0 +1,21 @@
+<AuthScreenView>
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: None
+        height: self.minimum_height
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        size_hint_x: .8
+        spacing: 15
+        MDLabel:
+            text: "Password Keeper"
+            halign: 'center'
+        MDTextField:
+            id: login_username_textfield
+            hint_text: "Username"
+        MDTextField:
+            id: login_password_textfield
+            hint_text: "Master-password"
+        MDRaisedButton:
+            id: sign_in_button
+            text: "Sign In"
+            pos_hint: {'center_x': .5, 'center_y': .5}

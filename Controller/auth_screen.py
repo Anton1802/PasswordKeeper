@@ -1,7 +1,8 @@
-from View.MainScreen.main_screen import MainScreenView
+
+from View.AuthScreen.auth_screen import AuthScreenView
 
 
-class MainScreenController:
+class AuthScreenController:
     """
     The `MainScreenController` class represents a controller implementation.
     Coordinates work of the view with the model.
@@ -11,9 +12,7 @@ class MainScreenController:
 
     def __init__(self, model):
         self.model = model  # Model.main_screen.MainScreenModel
-        self.view = MainScreenView(controller=self, model=self.model)
+        self.view = AuthScreenView(controller=self, model=self.model)
 
-    def get_view(self) -> MainScreenView:
+    def get_view(self) -> AuthScreenView:
         return self.view
-
-
