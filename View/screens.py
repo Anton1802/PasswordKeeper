@@ -4,8 +4,10 @@
 
 from Model.main_screen import MainScreenModel
 from Model.auth_screen import AuthScreenModel
+from Model.control_screen import ControlScreenModel
 from Controller.main_screen import MainScreenController
 from Controller.auth_screen import AuthScreenController
+from Controller.control_screen import ControlScreenController
 
 
 screens = {
@@ -16,5 +18,9 @@ screens = {
     "auth screen": {
         "model": AuthScreenModel,
         "controller": AuthScreenController
+    },
+    "control screen": {
+        "model": ControlScreenModel,
+        "controller": ControlScreenController
     }
 }

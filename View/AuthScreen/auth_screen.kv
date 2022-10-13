@@ -16,7 +16,9 @@
         MDTextField:
             id: login_password_textfield
             hint_text: "Master-password"
+            password: True
         MDRaisedButton:
             id: sign_in_button
             text: "Sign In"
             pos_hint: {'center_x': .5, 'center_y': .5}
+            on_press: root.controller.login_user()
