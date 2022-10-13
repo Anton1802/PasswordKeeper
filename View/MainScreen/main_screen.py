@@ -1,10 +1,13 @@
 from View.base_screen import BaseScreenView
 from kivymd.uix.dialog.dialog import MDDialog
 from kivymd.uix.button.button import MDRaisedButton
+from kivy.properties import ObjectProperty
 
 
 
 class MainScreenView(BaseScreenView):
+
+    dialogue = ObjectProperty()
 
     def model_is_changed(self) -> None:
         """
@@ -17,15 +20,15 @@ class MainScreenView(BaseScreenView):
         self.manager_screens.current = "auth screen"
 
     def show_message(self, message):
-        dialog = MDDialog(
+        self.dialogue = MDDialog(
             title="Message",
             text=message,
             buttons=[
                 MDRaisedButton(
                     text="OK",
-                    on_press=lambda x: dialog.dismiss()
+                    on_press=lambda x: self.dialogue.dismiss()
                 )
             ]
         )
-        dialog.open()
+        self.dialogue.open()
 

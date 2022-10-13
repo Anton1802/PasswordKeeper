@@ -13,7 +13,6 @@ class MainScreenController:
     def __init__(self, model):
         self.model = model  # Model.main_screen.MainScreenModel
         self.view = MainScreenView(controller=self, model=self.model)
-        self.message = ''
 
     def get_view(self) -> MainScreenView:
         return self.view
@@ -28,6 +27,7 @@ class MainScreenController:
         else:
             self.model.add_user(username, password)
             self.view.show_message("You have registered!")
+            self.view.manager_screens.current = 'auth screen'
 
 
 

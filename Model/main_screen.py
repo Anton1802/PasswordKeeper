@@ -16,4 +16,4 @@ class MainScreenModel(BaseScreenModel):
             "password": password,
             "data_user": {}
         }
-        json_wr.json_write(f'assets/data/{username}.json', self.user)
+        json_wr.json_write(f'assets/data/users/{username}.json', self.user)
