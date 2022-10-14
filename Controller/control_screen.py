@@ -1,4 +1,4 @@
-from View.ControllScreen.control_screen import ControlScreenView
+from View.ControlScreen.control_screen import ControlScreenView
 
 
 class ControlScreenController:
@@ -15,3 +15,13 @@ class ControlScreenController:
 
     def get_view(self) -> ControlScreenView:
         return self.view
+
+
+    def add_account(self, name, username, password, url):
+        if len(name) != 0 and len(username) != 0 and len(password) != 0 and len(url) != 0:
+            self.model.add_account(name, username, password, url)
+            self.view.dialogue.dismiss()
+            self.view.show_message("Add Successful!")
+        else:
+            self.view.dialogue.dismiss()
+            self.view.show_message("Error: One field or all fields are empty!")

@@ -6,10 +6,9 @@
             title: "Password Keeper"
             right_action_items:
                 [
-                ['delete', lambda x: root.controller.delete_account()],
-                ['plus', lambda x: root.controller.add_account()],
+                ['delete'],
+                ['plus', lambda x: root.show_dialogue_add_account()],
                 ]
-
 
 
         MDScrollView:

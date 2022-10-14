@@ -1,8 +1,36 @@
 from Model.base_model import BaseScreenModel
+from kivy.properties import StringProperty, ListProperty
+import Utility.json_writer_reader as json_wr
+import os
 
 
 class ControlScreenModel(BaseScreenModel):
-    """
-    Implements the logic of the
-    :class:`~View.main_screen.MainScreen.MainScreenView` class.
-    """
+
+    path = StringProperty
+    file_list = ListProperty
+    username_file = StringProperty
+    user = ListProperty
+
+    def get_current_user(self):
+
+        current_user = json_wr.json_read('assets/data/users/current_user.json')
+
+        self.path = 'assets/data/users'
+        self.file_list = os.listdir(self.path)
+        self.username_file = current_user[0] + '.json'
+
+        for el in self.file_list:
+            if el == self.username_file:
+                self.user = json_wr.json_read(self.path + '/' + self.username_file)
+
+        return self.user
+
+    def add_account(self, name, username, password, url):
+        path = 'assets/data/users/' + self.user['username'] + '.json'
+        count = len(self.user['data_user'])
+
+        self.user['data_user'][f'account{count}'] = [name, username, password, url]
+        json_wr.json_write(path, self.user)
+
+        self.notify_observers('control screen')
+

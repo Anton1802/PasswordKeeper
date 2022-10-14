@@ -1,0 +1,9 @@
+<AccountItem>
+    ImageLeftWidget:
+        source: root.path_icon
+
+    MDCheckbox:
+        size: "48dp", "48dp"
+        size_hint: None,None
+        on_active: root.check_box_active(*args)
+        pos_hint: {'right': 1, 'center_y': .5}

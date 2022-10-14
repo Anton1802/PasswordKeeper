@@ -1,4 +1,5 @@
 from View.AuthScreen.auth_screen import AuthScreenView
+import Utility.json_writer_reader as json_wr
 
 
 
@@ -27,6 +28,9 @@ class AuthScreenController:
             if user['username'] == username and user['password'] == password:
                 self.view.show_message("Login Successful!")
                 self.view.manager_screens.current = "control screen"
+                path = "assets/data/users/current_user.json"
+                current_user = [user['username'], user['password']]
+                json_wr.json_write(path, current_user)
             else:
                 self.view.show_message("User is not found!")
         except TypeError:
