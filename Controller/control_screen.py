@@ -19,3 +19,13 @@ class ControlScreenController:
         else:
             self.view.dialogue.dismiss()
             self.view.show_message("Error: One field or all fields are empty!")
+
+    def remove_accounts(self):
+        for child in self.view.ids.container_accounts.children:
+            if child.checkbox_state:
+                self.model.remove_account(child.key_object)
+
+        self.model.notify_observers('control screen')
+
+
+

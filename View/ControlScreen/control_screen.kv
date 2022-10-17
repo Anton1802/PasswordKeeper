@@ -6,7 +6,7 @@
             title: "Password Keeper"
             right_action_items:
                 [
-                ['delete'],
+                ['delete', lambda x: root.controller.remove_accounts()],
                 ['plus', lambda x: root.show_dialogue_add_account()],
                 ]
 

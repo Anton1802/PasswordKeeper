@@ -6,7 +6,7 @@ from kivy.properties import BooleanProperty
 class AccountItem(OneLineIconListItem):
     path_icon = StringProperty()
     key_object = StringProperty()
-    checkbox_state = BooleanProperty()
+    checkbox_state = BooleanProperty(False)
 
 
     def check_box_active(self, checkbox, value):

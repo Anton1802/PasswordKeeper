@@ -34,3 +34,14 @@ class ControlScreenModel(BaseScreenModel):
 
         self.notify_observers('control screen')
 
+    def remove_account(self, key):
+        path = 'assets/data/users/' + self.user['username'] + '.json'
+        self.user['data_user'].pop(key)
+        json_wr.json_write(path, self.user)
+        return True
+
+
+
+
+
+
