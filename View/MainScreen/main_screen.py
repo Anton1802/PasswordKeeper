@@ -10,16 +10,12 @@ class MainScreenView(BaseScreenView):
     dialogue = ObjectProperty()
 
     def model_is_changed(self) -> None:
-        """
-        Called whenever any change has occurred in the data model.
-        The view in this method tracks these changes and updates the UI
-        according to these changes.
-        """
+        pass
 
-    def go_login_screen(self):
+    def go_login_screen(self) -> None:
         self.manager_screens.current = "auth screen"
 
-    def show_message(self, message):
+    def show_message(self, message: str) -> None:
         self.dialogue = MDDialog(
             title="Message",
             text=message,

@@ -1,16 +1,13 @@
 from Model.base_model import BaseScreenModel
 from kivy.properties import DictProperty
-import Utility.json_writer_reader as json_wr
+import libs.json_writer_reader as json_wr
 
 
 class MainScreenModel(BaseScreenModel):
-    """
-    Implements the logic of the
-    :class:`~View.main_screen.MainScreen.MainScreenView` class.
-    """
+
     user = DictProperty
 
-    def add_user(self, username, password):
+    def add_user(self, username: str, password: str) -> None:
         self.user = {
             "username": username,
             "password": password,

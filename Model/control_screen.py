@@ -1,6 +1,6 @@
 from Model.base_model import BaseScreenModel
 from kivy.properties import StringProperty, ListProperty
-import Utility.json_writer_reader as json_wr
+import libs.json_writer_reader as json_wr
 import os
 
 
@@ -11,7 +11,7 @@ class ControlScreenModel(BaseScreenModel):
     username_file = StringProperty
     user = ListProperty
 
-    def get_current_user(self):
+    def get_current_user(self) -> dict:
 
         current_user = json_wr.json_read('assets/data/users/current_user.json')
 
@@ -25,7 +25,7 @@ class ControlScreenModel(BaseScreenModel):
 
         return self.user
 
-    def add_account(self, name, username, password, url):
+    def add_account(self, name: str, username: str, password: str, url: str) -> None:
         path = 'assets/data/users/' + self.user['username'] + '.json'
         count = len(self.user['data_user'])
 

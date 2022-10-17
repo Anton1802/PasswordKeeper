@@ -18,10 +18,10 @@ class ControlScreenView(BaseScreenView):
         self.ids.container_accounts.clear_widgets()
         self.generate_items()
 
-    def on_enter(self):
+    def on_enter(self) -> None:
         self.generate_items()
 
-    def show_message(self, message):
+    def show_message(self, message: str):
         self.dialog_message = MDDialog(
             title="Message",
             text=message,
@@ -34,7 +34,7 @@ class ControlScreenView(BaseScreenView):
         )
         self.dialog_message.open()
 
-    def generate_items(self):
+    def generate_items(self) -> None:
         user = self.model.get_current_user()
         keys = list()
 
@@ -51,7 +51,7 @@ class ControlScreenView(BaseScreenView):
             )
             self.ids.container_accounts.add_widget(account_item)
 
-    def show_dialogue_add_account(self):
+    def show_dialogue_add_account(self) -> None:
         self.dialogue = MDDialog(
             title="Add Account",
             type="custom",
@@ -67,7 +67,6 @@ class ControlScreenView(BaseScreenView):
             ],
         )
         self.dialogue.open()
-
 
         self.dialogue.buttons[0].bind(on_press=lambda x: self.controller.add_account(
             self.dialogue.content_cls.ids.dialogue_name_field.text,

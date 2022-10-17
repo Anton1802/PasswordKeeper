@@ -1,5 +1,5 @@
 from View.AuthScreen.auth_screen import AuthScreenView
-import Utility.json_writer_reader as json_wr
+import libs.json_writer_reader as json_wr
 
 
 
@@ -18,7 +18,7 @@ class AuthScreenController:
     def get_view(self) -> AuthScreenView:
         return self.view
 
-    def login_user(self):
+    def login_user(self) -> None:
         username = self.view.ids.login_username_textfield.text
         password = self.view.ids.login_password_textfield.text
 
