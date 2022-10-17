@@ -12,7 +12,6 @@ class ControlScreenModel(BaseScreenModel):
     user = ListProperty
 
     def get_current_user(self) -> dict:
-
         current_user = json_wr.json_read('assets/data/users/current_user.json')
 
         self.path = 'assets/data/users'
@@ -38,7 +37,6 @@ class ControlScreenModel(BaseScreenModel):
         path = 'assets/data/users/' + self.user['username'] + '.json'
         self.user['data_user'].pop(key)
         json_wr.json_write(path, self.user)
-        return True
 
 
 
