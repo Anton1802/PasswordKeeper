@@ -1,0 +1,44 @@
+#:import Clipboard kivy.core.clipboard.Clipboard
+#:import Snackbar kivymd.uix.snackbar.Snackbar
+
+<ContentDialogueInfo>
+    orientation: "vertical"
+    spacing: "12dp"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "340dp"
+    MDLabel:
+        text: "Click on the field to copy!"
+    MDList:
+        id: container_info
+        size_hint_y: None
+        TwoLineIconListItem:
+            text: "Name"
+            secondary_text: root.name
+            IconLeftWidget:
+                icon: "bookmark"
+
+        TwoLineIconListItem:
+            on_press: Clipboard.copy(root.username)
+            on_press: Snackbar(text="Copy Success!").open()
+            text: 'Username'
+            secondary_text: root.username
+            IconLeftWidget:
+                icon: "account-box"
+
+        TwoLineIconListItem:
+            on_press: Clipboard.copy(root.password)
+            on_press: Snackbar(text="Copy Success!").open()
+            text: 'Password'
+            secondary_text: root.password
+            IconLeftWidget:
+                icon: "key"
+
+        TwoLineIconListItem:
+            on_press: Clipboard.copy(root.url)
+            on_press: Snackbar(text="Copy Success!").open()
+            text: 'Url'
+            secondary_text: root.url
+            IconLeftWidget:
+                icon: "link"
+
