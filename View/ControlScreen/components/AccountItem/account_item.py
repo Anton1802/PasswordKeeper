@@ -8,7 +8,6 @@ class AccountItem(OneLineIconListItem):
     key_object = StringProperty()
     checkbox_state = BooleanProperty(False)
 
-
     def check_box_active(self, checkbox, value):
         self.checkbox_state = value
 

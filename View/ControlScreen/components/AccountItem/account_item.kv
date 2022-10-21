@@ -1,9 +1,16 @@
 <AccountItem>
     ImageLeftWidget:
         source: root.path_icon
-
+    MDFlatButton:
+        size_hint: 1, 1
+        pos_hint: {"right": .92, "top": .9}
+        text_color: "blue"
+        theme_text_color: "Custom"
+        id: button_show_info
     MDCheckbox:
         size: "48dp", "48dp"
         size_hint: None,None
         on_active: root.check_box_active(*args)
         pos_hint: {'right': 1, 'center_y': .5}
+
+

@@ -1,5 +1,4 @@
 from View.ControlScreen.control_screen import ControlScreenView
-from cerberus.validator import Validator
 
 
 class ControlScreenController:
@@ -11,28 +10,20 @@ class ControlScreenController:
     def get_view(self) -> ControlScreenView:
         return self.view
 
-
     def add_account(self, name: str, username: str, password: str, url: str) -> None:
-        v = Validator()
-        regex_url = r"[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
-        schema = {"name": {'type': 'string', 'maxlength': 80, 'required': True},
-                  "username": {'type': 'string', 'maxlength': 80, 'required': True},
-                  "password": {'type': 'string', 'maxlength': 80, 'required': True},
-                  "url": {'type': 'string', 'required': True, 'regex': regex_url},
-                  }
-        document = {
-            "name": name,
-            "username": username,
-            "password": password,
-            "url": url,
-        }
-        if v.validate(document, schema):
+        if (len(name) <= 80
+                and len(username) <= 80
+                and len(password) <= 80
+                and len(name) != 0
+                and len(username) != 0
+                and len(password) != 0
+                and len(url) != 0):
             self.model.add_account(name, username, password, url)
             self.view.dialogue.dismiss()
             self.view.show_message("Add Successful!")
         else:
             self.view.dialogue.dismiss()
-            self.view.show_message("Error: Some of the fields are entered incorrectly!")
+            self.view.show_message("Error: Some of the fields are empty!")
 
     def remove_accounts(self):
         for child in self.view.ids.container_accounts.children:
@@ -40,7 +31,3 @@ class ControlScreenController:
                 self.model.remove_account(child.key_object)
 
         self.model.notify_observers('control screen')
-
-
-
-
