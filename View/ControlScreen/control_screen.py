@@ -104,8 +104,7 @@ class ControlScreenView(BaseScreenView):
         )
         self.dialog_info.open()
 
-    def snackbar_show(self):
-        if not self.snackbar:
-            self.snackbar = Snackbar(text="Successfully removed!")
-            self.snackbar.open()
+    def snackbar_show(self, text):
+        self.snackbar = Snackbar(text=text)
+        self.snackbar.open()
 
