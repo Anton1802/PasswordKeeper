@@ -31,3 +31,6 @@ class ControlScreenController:
                 self.model.remove_account(child.key_object)
 
         self.model.notify_observers('control screen')
+
+        self.view.snackbar_show()
+

@@ -7,6 +7,7 @@ from View.ControlScreen.components.ContentDialogueAddAccount.content_dialogue_ad
     import ContentDialogueAddAccount
 from kivymd.uix.button.button import MDRaisedButton
 from View.ControlScreen.components.ContentDialogueInfo.content_dialogue_info import ContentDialogueInfo
+from kivymd.uix.snackbar.snackbar import Snackbar
 
 
 class ControlScreenView(BaseScreenView):
@@ -14,6 +15,7 @@ class ControlScreenView(BaseScreenView):
     dialogue = ObjectProperty()
     dialog_message = ObjectProperty()
     dialog_info = ObjectProperty()
+    snackbar = ObjectProperty()
 
     def model_is_changed(self) -> None:
         self.ids.container_accounts.clear_widgets()
@@ -101,3 +103,9 @@ class ControlScreenView(BaseScreenView):
             ]
         )
         self.dialog_info.open()
+
+    def snackbar_show(self):
+        if not self.snackbar:
+            self.snackbar = Snackbar(text="Successfully removed!")
+            self.snackbar.open()
+
