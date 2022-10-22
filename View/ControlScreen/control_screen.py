@@ -104,7 +104,7 @@ class ControlScreenView(BaseScreenView):
         )
         self.dialog_info.open()
 
-    def snackbar_show(self, text):
+    def snackbar_show(self, text: str) -> None:
         self.snackbar = Snackbar(text=text)
         self.snackbar.open()
 

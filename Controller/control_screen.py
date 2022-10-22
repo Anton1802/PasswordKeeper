@@ -25,7 +25,7 @@ class ControlScreenController:
             self.view.dialogue.dismiss()
             self.view.show_message("Error: Some of the fields are empty!")
 
-    def remove_accounts(self):
+    def remove_accounts(self) -> None:
         state = False
         for child in self.view.ids.container_accounts.children:
             if child.checkbox_state:
@@ -38,5 +38,4 @@ class ControlScreenController:
             self.view.snackbar_show("Successfully removed!")
         else:
             self.view.snackbar_show("Select accounts to delete!")
-
 
