@@ -24,11 +24,11 @@ class ControlScreenModel(BaseScreenModel):
 
         return self.user
 
-    def add_account(self, name: str, username: str, password: str, url: str) -> None:
+    def add_account(self, name: str, username: str, password: str, url: str, icon_path: str) -> None:
         path = 'assets/data/users/' + self.user['username'] + '.json'
         count = len(self.user['data_user'])
 
-        self.user['data_user'][f'account{count}'] = [name, username, password, url]
+        self.user['data_user'][f'account{count}'] = [name, username, password, url, icon_path]
         json_wr.json_write(path, self.user)
 
         self.notify_observers('control screen')

@@ -41,7 +41,6 @@ class ControlScreenView(BaseScreenView):
         user = self.model.get_current_user()
         keys = list()
 
-        path_icon = "assets/images/icon.png"
 
         for key in user['data_user']:
             keys.append(key)
@@ -50,7 +49,7 @@ class ControlScreenView(BaseScreenView):
             account_item = AccountItem(
                 key_object=key,
                 text=user['data_user'][key][0],
-                path_icon=path_icon,
+                path_icon=user['data_user'][key][4],
             )
             account_item.ids.button_show_info.bind(on_press=lambda x: self.show_info(key))
             self.ids.container_accounts.add_widget(account_item)
@@ -80,7 +79,8 @@ class ControlScreenView(BaseScreenView):
             self.dialogue.content_cls.ids.dialogue_name_field.text,
             self.dialogue.content_cls.ids.dialogue_username_field.text,
             self.dialogue.content_cls.ids.dialogue_password_field.text,
-            self.dialogue.content_cls.ids.dialogue_url_field.text
+            self.dialogue.content_cls.ids.dialogue_url_field.text,
+            self.dialogue.content_cls.ids.carousel_icons.current_slide.icon
         ))
 
     def show_info(self, key):
