@@ -24,6 +24,9 @@ class ControlScreenView(BaseScreenView):
     def on_enter(self) -> None:
         self.generate_items()
 
+    def on_leave(self):
+        self.ids.container_accounts.clear_widgets()
+
     def show_message(self, message: str):
         self.dialog_message = MDDialog(
             title="Message",
