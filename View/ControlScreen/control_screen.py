@@ -50,8 +50,8 @@ class ControlScreenView(BaseScreenView):
                 key_object=key,
                 text=user['data_user'][key][0],
                 path_icon=user['data_user'][key][4],
+                function_button=lambda x: self.show_info(x)
             )
-            account_item.ids.button_show_info.bind(on_press=lambda x: self.show_info(key))
             self.ids.container_accounts.add_widget(account_item)
 
     def show_dialogue_add_account(self) -> None:
