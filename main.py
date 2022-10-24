@@ -13,6 +13,7 @@ https://en.wikipedia.org/wiki/Model–view–controller
 
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
+from kivy.base import EventLoop
 
 from View.screens import screens
 
@@ -24,7 +25,18 @@ class PasswordKeeper(MDApp):
         # This is the screen manager that will contain all the screens of your
         # application.
         self.manager_screens = MDScreenManager()
-        
+
+    def on_start(self):
+        EventLoop.window.bind(on_keyboard=self.back_click)
+
+    def back_click(self, window, key, *largs):
+        if key == 27:
+            if self.manager_screens.current == "auth screen":
+                self.manager_screens.current = "main screen"
+            if self.manager_screens.current == "control screen":
+                self.manager_screens.current = "auth screen"
+            return True
+
     def build(self) -> MDScreenManager:
         self.generate_application_screens()
         return self.manager_screens

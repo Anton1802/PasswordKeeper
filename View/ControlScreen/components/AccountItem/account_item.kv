@@ -6,7 +6,7 @@
         pos_hint: {"right": .92, "top": .9}
         text_color: "blue"
         theme_text_color: "Custom"
-        id: button_show_info
+        on_press: root.function_button(root.key_object)
     MDCheckbox:
         size: "48dp", "48dp"
         size_hint: None,None

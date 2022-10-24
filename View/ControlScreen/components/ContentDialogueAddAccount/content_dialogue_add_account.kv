@@ -3,7 +3,7 @@
     spacing: "12dp"
     padding: "12dp"
     size_hint_y: None
-    height: "285dp"
+    height: "380dp"
 
     MDTextField:
         id: dialogue_name_field
@@ -25,3 +25,32 @@
         id: dialogue_url_field
         hint_text: "Url"
         helper_text: "Example: www.example.com"
+
+    BoxLayout:
+        orientation: "horizontal"
+        MDLabel:
+            text: "Icon:"
+            halign: "left"
+            valign: "center"
+            color: "#808080"
+            underline: True
+        MDCarousel:
+            id: carousel_icons
+            size_hint_x: .3
+            MDIconButton:
+                icon: root.icons["default"]
+            MDIconButton:
+                icon: root.icons["vk"]
+            MDIconButton:
+                icon: root.icons["google"]
+            MDIconButton:
+                icon: root.icons["yandex"]
+            MDIconButton:
+                icon: root.icons["mail.ru"]
+            MDIconButton:
+                icon: root.icons["aliexpress"]
+            MDIconButton:
+                icon: root.icons["facebook"]
+            MDIconButton:
+                icon: root.icons["github"]
+

@@ -10,7 +10,7 @@ class ControlScreenController:
     def get_view(self) -> ControlScreenView:
         return self.view
 
-    def add_account(self, name: str, username: str, password: str, url: str) -> None:
+    def add_account(self, name: str, username: str, password: str, url: str, icon_path: str) -> None:
         if (len(name) <= 80
                 and len(username) <= 80
                 and len(password) <= 80
@@ -18,16 +18,24 @@ class ControlScreenController:
                 and len(username) != 0
                 and len(password) != 0
                 and len(url) != 0):
-            self.model.add_account(name, username, password, url)
+            self.model.add_account(name, username, password, url, icon_path)
             self.view.dialogue.dismiss()
             self.view.show_message("Add Successful!")
         else:
             self.view.dialogue.dismiss()
             self.view.show_message("Error: Some of the fields are empty!")
 
-    def remove_accounts(self):
+    def remove_accounts(self) -> None:
+        state = False
         for child in self.view.ids.container_accounts.children:
             if child.checkbox_state:
                 self.model.remove_account(child.key_object)
+                state = True
 
         self.model.notify_observers('control screen')
+
+        if state:
+            self.view.snackbar_show("Successfully removed!")
+        else:
+            self.view.snackbar_show("Select accounts to delete!")
+

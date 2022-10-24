@@ -7,6 +7,7 @@ from View.ControlScreen.components.ContentDialogueAddAccount.content_dialogue_ad
     import ContentDialogueAddAccount
 from kivymd.uix.button.button import MDRaisedButton
 from View.ControlScreen.components.ContentDialogueInfo.content_dialogue_info import ContentDialogueInfo
+from kivymd.uix.snackbar.snackbar import Snackbar
 
 
 class ControlScreenView(BaseScreenView):
@@ -14,6 +15,7 @@ class ControlScreenView(BaseScreenView):
     dialogue = ObjectProperty()
     dialog_message = ObjectProperty()
     dialog_info = ObjectProperty()
+    snackbar = ObjectProperty()
 
     def model_is_changed(self) -> None:
         self.ids.container_accounts.clear_widgets()
@@ -21,6 +23,9 @@ class ControlScreenView(BaseScreenView):
 
     def on_enter(self) -> None:
         self.generate_items()
+
+    def on_leave(self):
+        self.ids.container_accounts.clear_widgets()
 
     def show_message(self, message: str):
         self.dialog_message = MDDialog(
@@ -39,7 +44,6 @@ class ControlScreenView(BaseScreenView):
         user = self.model.get_current_user()
         keys = list()
 
-        path_icon = "assets/images/icon.png"
 
         for key in user['data_user']:
             keys.append(key)
@@ -48,9 +52,9 @@ class ControlScreenView(BaseScreenView):
             account_item = AccountItem(
                 key_object=key,
                 text=user['data_user'][key][0],
-                path_icon=path_icon,
+                path_icon=user['data_user'][key][4],
+                function_button=lambda x: self.show_info(x)
             )
-            account_item.ids.button_show_info.bind(on_press=lambda x: self.show_info(key))
             self.ids.container_accounts.add_widget(account_item)
 
     def show_dialogue_add_account(self) -> None:
@@ -78,7 +82,8 @@ class ControlScreenView(BaseScreenView):
             self.dialogue.content_cls.ids.dialogue_name_field.text,
             self.dialogue.content_cls.ids.dialogue_username_field.text,
             self.dialogue.content_cls.ids.dialogue_password_field.text,
-            self.dialogue.content_cls.ids.dialogue_url_field.text
+            self.dialogue.content_cls.ids.dialogue_url_field.text,
+            self.dialogue.content_cls.ids.carousel_icons.current_slide.icon
         ))
 
     def show_info(self, key):
@@ -101,3 +106,8 @@ class ControlScreenView(BaseScreenView):
             ]
         )
         self.dialog_info.open()
+
+    def snackbar_show(self, text: str) -> None:
+        self.snackbar = Snackbar(text=text)
+        self.snackbar.open()
+
