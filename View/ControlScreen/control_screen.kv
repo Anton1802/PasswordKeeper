@@ -6,6 +6,7 @@
             title: "Password Keeper"
             right_action_items:
                 [
+                ['sync', lambda x: root.model.sync_accounts()],
                 ['delete', lambda x: root.controller.remove_accounts()],
                 ['plus', lambda x: root.show_dialogue_add_account()],
                 ]

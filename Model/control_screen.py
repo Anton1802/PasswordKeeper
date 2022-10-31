@@ -1,7 +1,9 @@
 from Model.base_model import BaseScreenModel
 from kivy.properties import StringProperty, ListProperty
+from Utility.sync import Sync
 import libs.json_writer_reader as json_wr
 import os
+import json
 
 
 class ControlScreenModel(BaseScreenModel):
@@ -37,6 +39,25 @@ class ControlScreenModel(BaseScreenModel):
         path = 'assets/data/users/' + self.user['username'] + '.json'
         self.user['data_user'].pop(key)
         json_wr.json_write(path, self.user)
+
+    def sync_accounts(self) -> None:
+
+        sync = Sync('localhost', 3030)
+        sync.connect()
+
+        message = json.dumps(self.user)
+        sync.request_message(message)
+
+        json_wr.json_write(self.path + '/' + self.username_file,
+                           json.loads("".join(sync.response_message())))
+
+        self.notify_observers("control screen")
+
+
+
+
+
+
 
 
 
