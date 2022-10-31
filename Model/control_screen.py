@@ -40,18 +40,27 @@ class ControlScreenModel(BaseScreenModel):
         self.user['data_user'].pop(key)
         json_wr.json_write(path, self.user)
 
-    def sync_accounts(self) -> None:
+    def sync_accounts(self) -> bool:
 
-        sync = Sync('localhost', 3030)
+        sync = Sync('localhost', 3035)
         sync.connect()
+        try:
+            message = json.dumps(self.user)
+            sync.request_message(message)
 
-        message = json.dumps(self.user)
-        sync.request_message(message)
+            json_wr.json_write(self.path + '/' + self.username_file,
+                               json.loads("".join(sync.response_message())))
 
-        json_wr.json_write(self.path + '/' + self.username_file,
-                           json.loads("".join(sync.response_message())))
+            self.notify_observers("control screen")
 
-        self.notify_observers("control screen")
+        except json.decoder.JSONDecodeError:
+            return False
+        else:
+            return True
+
+
+
+
 
 
 

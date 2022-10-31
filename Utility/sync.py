@@ -8,22 +8,31 @@ class Sync:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def connect(self):
-        self.s.connect((self.host, self.port))
+        try:
+            self.s.connect((self.host, self.port))
+        except ConnectionRefusedError:
+            return False
+        else:
+            return True
 
     def request_message(self, message):
-        self.s.sendall(message.encode('utf-8'))
+        try:
+            self.s.sendall(message.encode('utf-8'))
+        except BrokenPipeError:
+            return False
+        else:
+            return True
 
     def response_message(self) -> list:
         data_response = []
-
-        while True:
-            data = self.s.recv(3)
-            data_response.append(data.decode("utf-8"))
-            if not data:
-                break
-
-        return data_response
-
-
-
+        try:
+            while True:
+                data = self.s.recv(1024)
+                data_response.append(data.decode("utf-8"))
+                if not data:
+                    break
+        except OSError:
+            return list()
+        else:
+            return data_response
 
