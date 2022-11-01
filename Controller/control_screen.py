@@ -39,3 +39,10 @@ class ControlScreenController:
         else:
             self.view.snackbar_show("Select accounts to delete!")
 
+    def sync_control_user(self):
+        if self.model.sync_accounts():
+            self.view.snackbar_show("Synchronization Success!")
+        else:
+            self.view.snackbar_show("Not connection to the server!")
+
+
